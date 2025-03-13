@@ -1,9 +1,10 @@
 # This is an exercise. Monitor Linux server resources. 
-#Total CPU usage
-#Total memory usage (Free vs Used including percentage)
-#Total disk usage (Free vs Used including percentage)
-#Top 5 processes by CPU usage
-#Top 5 processes by memory usage
+# Total CPU usage
+# Total memory usage (Free vs Used including percentage)
+# Total disk usage (Free vs Used including percentage)
+# Top 5 processes by CPU usage
+# Top 5 processes by memory usage
+# This tests code commit from VS; delete this comment. 
 
 
 #!/bin/bash
