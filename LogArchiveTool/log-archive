@@ -1,0 +1,46 @@
+# This script compresses and moves logfiles to a directory specified 
+# by the user. e.g. log-archive /var/archive
+# The file is compressed as tar.gz file and the name includes the date and time
+# of archive
+
+
+#!/bin/bash
+
+# Function to display usage information
+usage() {
+    echo "Usage: $0 <log-directory>"
+    echo "Example: $0 /var/logs/"
+    exit 1
+}
+
+# Ensure exactly one argument is provided
+if [ "$#" -ne 1 ]; then
+    usage
+fi
+
+# Get the log directory from the first argument
+LOG_DIR="$1"
+
+# Validate the log directory
+if [ ! -d "$LOG_DIR" ]; then
+    echo "Error: '$LOG_DIR' is not a valid directory."
+    usage
+fi
+
+# Get the current date and time for the archive filename
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+ARCHIVE_NAME="logs_archive_$TIMESTAMP.tar.gz"
+
+# Navigate to the log directory
+cd "$LOG_DIR" || exit
+
+# Create the tar.gz archive
+tar -czf "$ARCHIVE_NAME" *
+
+# Provide feedback
+if [ $? -eq 0 ]; then
+    echo "Logs archived successfully to '$ARCHIVE_NAME'."
+else
+    echo "Error: Failed to archive logs."
+fi
+
